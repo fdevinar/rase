@@ -21,6 +21,9 @@ public class Shift {
         if (worker == null) {
             throw new IllegalArgumentException("Worker must not be null");
         }
+        if (assignments.contains(worker)) {
+            throw new IllegalArgumentException("Worker is already in assignment");
+        }
         assignments.add(worker);
     }
 

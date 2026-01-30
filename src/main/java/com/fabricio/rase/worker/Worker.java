@@ -31,5 +31,18 @@ public class Worker {
         fatigue = Math.max(MIN_FATIGUE, fatigue - FATIGUE_PER_SHIFT);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Worker)) return false;
+
+        Worker worker = (Worker) o;
+        return id.equals(worker.id);
+    }
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
 }
 

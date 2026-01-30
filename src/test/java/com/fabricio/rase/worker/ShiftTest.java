@@ -17,6 +17,20 @@ public class ShiftTest {
         Worker worker = new Worker("W-2");
         assertDoesNotThrow(() -> shift.assign(worker));
     }
-
+    @Test
+    void assign_throwsWhenSameWorkerInstanceAssignedTwice() {
+        Shift shift = new Shift("S-3");
+        Worker worker = new Worker("W-3");
+        assertDoesNotThrow(() -> shift.assign(worker));
+        assertThrows(IllegalArgumentException.class, () -> shift.assign(worker));
+    }
+    @Test
+    void assign_throwsDifferentWorkerInstancesShareSameId() {
+        Shift shift = new Shift("S-4");
+        Worker worker = new Worker("W-4");
+        Worker workerSameId = new Worker("W-4");
+        assertDoesNotThrow(() -> shift.assign(worker));
+        assertThrows(IllegalArgumentException.class, () -> shift.assign(workerSameId));
+    }
 
 }
