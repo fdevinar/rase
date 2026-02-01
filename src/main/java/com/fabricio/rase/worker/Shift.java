@@ -7,6 +7,7 @@ public class Shift {
 
     private final String id;
     private final List<Worker> assignments = new ArrayList<>();
+    private boolean isExecuted = false;
 
     public Shift(String id) {
         if ( id == null || id.isBlank() ) {
@@ -28,9 +29,16 @@ public class Shift {
     }
 
     public void execute() {
+        if (assignments.isEmpty()) {
+            throw new IllegalArgumentException("Assignment is empty");
+        }
+        if (isExecuted) {
+            throw new IllegalStateException("Shift already executed");
+        }
         for (Worker worker : assignments) {
             worker.workShift();
         }
+        isExecuted = true;
     }
 
 }

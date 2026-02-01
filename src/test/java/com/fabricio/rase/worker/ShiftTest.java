@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ShiftTest {
 
     @Test
-    void assign_throwsWhenWorkerIsNull() {
+    void assign_cannotAssignNullWorker() {
         Shift shift = new Shift("S-1");
         assertThrows(IllegalArgumentException.class, () -> shift.assign(null));
     }
@@ -18,19 +18,33 @@ public class ShiftTest {
         assertDoesNotThrow(() -> shift.assign(worker));
     }
     @Test
-    void assign_throwsWhenSameWorkerInstanceAssignedTwice() {
+    void assign_cannotAssignSameWorkerTwice() {
         Shift shift = new Shift("S-3");
         Worker worker = new Worker("W-3");
         assertDoesNotThrow(() -> shift.assign(worker));
         assertThrows(IllegalArgumentException.class, () -> shift.assign(worker));
     }
     @Test
-    void assign_throwsDifferentWorkerInstancesShareSameId() {
+    void assign_cannotAssignWorkersWithSameId() {
         Shift shift = new Shift("S-4");
         Worker worker = new Worker("W-4");
         Worker workerSameId = new Worker("W-4");
         assertDoesNotThrow(() -> shift.assign(worker));
         assertThrows(IllegalArgumentException.class, () -> shift.assign(workerSameId));
     }
+    @Test
+    void execute_cannotExecuteWhenAssignmentsIsEmpty() {
+        Shift shift = new Shift("S-5");
+        assertThrows(IllegalArgumentException.class, shift::execute);
+    }
+    @Test
+    void execute_cannotExecuteSameShiftTwice() {
+        Shift shift = new Shift("S-6");
+        Worker worker = new Worker("W-6");
+        assertDoesNotThrow(() -> shift.assign(worker));
+        assertDoesNotThrow(shift::execute);
+        assertThrows(IllegalStateException.class, shift::execute);
+    }
+    //TODO VALIDATE IF ONE FAILED EXECUTION INVALIDS THE SHIFT
 
 }
