@@ -15,9 +15,24 @@ public class Worker {
         this.id = id;
         this.fatigue = MIN_FATIGUE;
     }
+
+    // STATIC CONSTRUCTOR
+    private Worker(String id, int fatigue) {
+        if ( id == null ||  id.isBlank() ) {
+            throw new IllegalArgumentException("Worker id must not be null or blank");
+        }
+        this.id = id;
+        this.fatigue = fatigue;
+    }
+    public static Worker of (String id, int fatigue) {
+        return new Worker( id, fatigue );
+    }
+    // INIT
     public String getId() {
         return id;
     }
+    public boolean canWork() { return fatigue < MAX_FATIGUE; }
+    // FUNCTIONS
     public void workShift() {
         if (fatigue >= MAX_FATIGUE) {
             throw new IllegalStateException("Worker is already exhausted");

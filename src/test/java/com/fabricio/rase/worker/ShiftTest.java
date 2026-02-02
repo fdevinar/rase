@@ -45,6 +45,34 @@ public class ShiftTest {
         assertDoesNotThrow(shift::execute);
         assertThrows(IllegalStateException.class, shift::execute);
     }
-    //TODO VALIDATE IF ONE FAILED EXECUTION INVALIDS THE SHIFT
+    @Test
+    void execute_executesShift() {
+        Shift shift = new Shift("S-7");
+        Worker worker = new Worker ("W-7");
+        Worker workerB = new Worker ("W-7B");
+        assertDoesNotThrow(() -> shift.assign(worker));
+        assertDoesNotThrow(() -> shift.assign(workerB));
+        assertDoesNotThrow(shift::execute);
+    }
+    @Test
+    void execute_cannotExecuteShiftWhenWorkerIsFatigued() {
+        Shift shift = new Shift("S-8");
+        Worker worker = new Worker("W-8");
+        Worker workerB = Worker.of("W-8B",100);
+        assertDoesNotThrow(() -> shift.assign(worker));
+        assertDoesNotThrow(() -> shift.assign(workerB));
+        assertThrows(IllegalStateException.class, shift::execute);
+    }
+    @Test
+    void execute_doesntChangeWorkerStateWhenExecutionFails() {
+        Shift shift = new Shift("S-9");
+        int maxFatigue = 100;
+        Worker worker = Worker.of("W-9", maxFatigue - 10);
+        Worker workerB = Worker.of("W-9B",maxFatigue);
+        assertDoesNotThrow(() -> shift.assign(worker));
+        assertDoesNotThrow(() -> shift.assign(workerB));
+        assertThrows(IllegalStateException.class, shift::execute);
+        assertTrue(worker.canWork());
+    }
 
 }

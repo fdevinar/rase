@@ -35,6 +35,12 @@ public class Shift {
         if (isExecuted) {
             throw new IllegalStateException("Shift already executed");
         }
+        // DECIDE IF WORK CAN BE PERFORMED
+        for (Worker worker : assignments) {
+            if (!worker.canWork()) {
+                throw new IllegalStateException("Shift contains workers that can't work");
+            }
+        }
         for (Worker worker : assignments) {
             worker.workShift();
         }
