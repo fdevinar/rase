@@ -6,7 +6,17 @@ import static org.junit.jupiter.api.Assertions.*;
 public class WorkerTest {
 
     @Test
-    void workshift_cannotWorkWhenExhausted() {
+    void cannotCreateWorkerWithNullId() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Worker(null));
+    }
+    @Test
+    void cannotCreateWorkerWithBlankId() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Worker(""));
+    }
+    @Test
+    void workshift_WorkerCannotWorkWhenExhausted() {
         Worker worker = new Worker("W-1");
         while (true) {
             try {
@@ -18,12 +28,12 @@ public class WorkerTest {
         assertThrows(IllegalStateException.class, worker::workShift);
     }
     @Test
-    void rest_cannotRestWhenRested() {
+    void rest_WorkerCannotRestWhenRested() {
         Worker worker = new Worker("W-2");
         assertThrows(IllegalStateException.class, worker::rest);
     }
     @Test
-    void rest_decreasesFatigue() {
+    void rest_WorkerDecreasesFatigue() {
         Worker worker = new Worker("W-3");
         worker.workShift();
         assertDoesNotThrow(worker::rest);
