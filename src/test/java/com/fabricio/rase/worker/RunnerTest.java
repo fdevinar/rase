@@ -15,6 +15,9 @@ public class RunnerTest {
        Schedule schedule = new Schedule("SC-1",List.of(shift));
        Runner runner = new Runner("R-1", schedule);
        assertDoesNotThrow(runner::executeSchedule);
+
+
+
     }
 
 }
