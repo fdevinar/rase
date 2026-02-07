@@ -11,11 +11,16 @@ public class Runner {
         this.plannedSchedule = plannedSchedule;
     }
 
-    // TODO: CREATE EXCEPTION CLASS FOR SHIFT ERROR AND LOG
     public List<String> executeSchedule() {
         List<String> testReport = new ArrayList<>();
         for (Shift currentShift : plannedSchedule.scheduledShifts()) {
-            currentShift.execute();
+            try {
+                currentShift.execute();
+                testReport.add("Shift " + currentShift.getId() + " executed successfully.");
+            // TODO: REFACTOR TO COVER MORE TESTING
+            } catch (IllegalStateException e) {
+                testReport.add("Shift " + currentShift.getId() + " failed.");
+            }
         }
         return testReport;
     }
