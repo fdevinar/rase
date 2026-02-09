@@ -7,7 +7,7 @@ public class Runner {
 
     private final Schedule plannedSchedule;
 
-    public Runner(String id, Schedule plannedSchedule) {
+    public Runner(Schedule plannedSchedule) {
         this.plannedSchedule = plannedSchedule;
     }
 
@@ -23,6 +23,7 @@ public class Runner {
             }
         }
         return testReport;
+
     }
 
 

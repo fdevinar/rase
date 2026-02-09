@@ -42,7 +42,7 @@ public class Shift {
             }
         }
         for (Worker worker : assignments) {
-            worker.workShift();
+            worker.performWork();
         }
         isExecuted = true;
     }

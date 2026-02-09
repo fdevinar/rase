@@ -16,16 +16,16 @@ public class WorkerTest {
                 () -> new Worker(""));
     }
     @Test
-    void workshift_WorkerCannotWorkWhenExhausted() {
+    void performWork_WorkerCannotWorkWhenExhausted() {
         Worker worker = new Worker("W-1");
         while (true) {
             try {
-                worker.workShift();
+                worker.performWork();
             } catch (IllegalStateException e) {
                 break;
             }
         }
-        assertThrows(IllegalStateException.class, worker::workShift);
+        assertThrows(IllegalStateException.class, worker::performWork);
     }
     @Test
     void rest_WorkerCannotRestWhenRested() {
@@ -35,7 +35,7 @@ public class WorkerTest {
     @Test
     void rest_WorkerDecreasesFatigue() {
         Worker worker = new Worker("W-3");
-        worker.workShift();
+        worker.performWork();
         assertDoesNotThrow(worker::rest);
     }
 

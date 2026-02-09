@@ -33,7 +33,7 @@ public class Worker {
     }
     public boolean canWork() { return fatigue < MAX_FATIGUE; }
     // FUNCTIONS
-    public void workShift() {
+    public void performWork() {
         if (fatigue >= MAX_FATIGUE) {
             throw new IllegalStateException("Worker is already exhausted");
         }
