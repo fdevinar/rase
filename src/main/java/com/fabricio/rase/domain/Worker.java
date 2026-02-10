@@ -1,4 +1,4 @@
-package com.fabricio.rase.worker;
+package com.fabricio.rase.domain;
 
 public class Worker {
 

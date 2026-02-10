@@ -1,5 +1,7 @@
-package com.fabricio.rase.worker;
-
+package com.fabricio.rase.application;
+import com.fabricio.rase.domain.Schedule;
+import com.fabricio.rase.domain.Shift;
+import com.fabricio.rase.domain.Worker;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,9 +24,9 @@ public class RunnerTest {
         shiftB.assign(workerD);
         Schedule schedule = new Schedule("SC-1", List.of(shift, shiftB));
         Runner runner = new Runner(schedule);
-        List<String> returnedReport = runner.executeSchedule();
-        List<String> expectedReport = new ArrayList<>
-                (List.of("Shift SH-1 executed successfully.", "Shift SH-1B executed successfully."));
+        ExecutionReport returnedReport = runner.executeSchedule();
+        ExecutionReport expectedReport = new ExecutionReport
+                (2, 2,0,List.of("Shift SH-1 executed successfully.", "Shift SH-1B executed successfully."));
         assertEquals(expectedReport, returnedReport);
     }
 
@@ -37,9 +39,9 @@ public class RunnerTest {
         shift.assign(workerB);
         Schedule schedule = new Schedule("SC-2", List.of(shift, shift));
         Runner runner = new Runner(schedule);
-        List<String> returnedReport = runner.executeSchedule();
-        List<String> expectedReport = new ArrayList<>
-                (List.of("Shift SH-2 executed successfully.", "Shift SH-2 failed."));
+        ExecutionReport returnedReport = runner.executeSchedule();
+        ExecutionReport expectedReport = new ExecutionReport
+                (2, 1,1,List.of("Shift SH-2 executed successfully.", "Shift SH-2 failed."));
         assertEquals(expectedReport, returnedReport);
     }
 

@@ -1,4 +1,4 @@
-package com.fabricio.rase.worker;
+package com.fabricio.rase.domain;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

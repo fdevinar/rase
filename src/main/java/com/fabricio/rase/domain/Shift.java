@@ -1,4 +1,4 @@
-package com.fabricio.rase.worker;
+package com.fabricio.rase.domain;
 
 import java.util.ArrayList;
 import java.util.List;
