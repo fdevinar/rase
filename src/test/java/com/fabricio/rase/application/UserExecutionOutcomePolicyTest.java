@@ -1,14 +1,9 @@
 package com.fabricio.rase.application;
-
-import com.fabricio.rase.domain.Schedule;
-import com.fabricio.rase.domain.Shift;
-import com.fabricio.rase.domain.Worker;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 
-import static com.fabricio.rase.application.UserExecutionOutcomePolicy.ExecutionOutcome.*;
+import static com.fabricio.rase.application.UserExecutionOutcomePolicy.UserExecutionOutcome.*;
 
 public class UserExecutionOutcomePolicyTest {
 
