@@ -8,7 +8,7 @@ public class UserSuggestedActionPolicy
     }
 
     public UserSuggestedAction evaluate (ExecutionReport report) {
-        if (report.totalShifts() == report.successfulShifts()) {
+        if (report.isFullySuccessful()) {
             return UserSuggestedAction.NO_ACTION_NEEDED;
         }
         else {

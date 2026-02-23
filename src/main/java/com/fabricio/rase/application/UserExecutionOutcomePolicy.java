@@ -9,10 +9,10 @@ public class UserExecutionOutcomePolicy {
     }
 
     public UserExecutionOutcome evaluate (ExecutionReport report) {
-        if (report.totalShifts() == report.successfulShifts()) {
+        if (report.isFullySuccessful()) {
             return UserExecutionOutcome.COMPLETED_SUCCESSFULLY;
         }
-        else if (report.totalShifts() == report.failedShifts()) {
+        else if (report.isCompletelyFailed()) {
             return UserExecutionOutcome.FAILED_COMPLETELY;
         }
         else {

@@ -7,10 +7,10 @@ public class SystemExecutionOutcomePolicy {
         FAILURE
     }
 
-    public SystemExecutionOutcomePolicy.SystemExecutionOutcome evaluate (ExecutionReport report) {
-        if (report.totalShifts() == report.successfulShifts()) {
-            return SystemExecutionOutcome.SUCCESS;
-        } else return SystemExecutionOutcome.FAILURE;
+    public SystemExecutionOutcome evaluate (ExecutionReport report) {
+        if (report.hasFailures()) {
+            return SystemExecutionOutcome.FAILURE;
+        } else return SystemExecutionOutcome.SUCCESS;
     }
 
 }

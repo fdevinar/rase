@@ -7,4 +7,15 @@ public record ExecutionReport(
         int successfulShifts,
         int failedShifts,
         List<String> messages
-) {}
+)
+{
+    public boolean hasFailures() {
+        return failedShifts > 0;
+    }
+    public boolean isFullySuccessful() {
+        return totalShifts == successfulShifts;
+    }
+    public boolean isCompletelyFailed() {
+        return totalShifts == failedShifts;
+    }
+}
