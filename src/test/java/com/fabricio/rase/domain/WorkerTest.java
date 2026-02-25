@@ -18,14 +18,10 @@ public class WorkerTest {
     @Test
     void performWork_WorkerCannotWorkWhenExhausted() {
         Worker worker = new Worker("W-1");
-        while (true) {
-            try {
-                worker.performWork();
-            } catch (IllegalStateException e) {
-                break;
-            }
+        while (worker.canWork()) {
+            worker.performWork();
         }
-        assertThrows(IllegalStateException.class, worker::performWork);
+        assertThrows(WorkerTooFatiguedException.class, worker::performWork);
     }
     @Test
     void rest_WorkerCannotRestWhenRested() {

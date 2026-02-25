@@ -31,11 +31,14 @@ public class Worker {
     public String getId() {
         return id;
     }
+    public static int getMaxFatigue() {
+        return MAX_FATIGUE;
+    }
     public boolean canWork() { return fatigue < MAX_FATIGUE; }
     // FUNCTIONS
     public void performWork() {
         if (fatigue >= MAX_FATIGUE) {
-            throw new IllegalStateException("Worker is already exhausted");
+            throw new WorkerTooFatiguedException();
         }
         fatigue = Math.min(MAX_FATIGUE, fatigue + FATIGUE_PER_SHIFT);
     }

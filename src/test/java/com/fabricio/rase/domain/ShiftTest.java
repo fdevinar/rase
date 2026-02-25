@@ -66,7 +66,7 @@ public class ShiftTest {
     @Test
     void execute_doesntChangeWorkerStateWhenExecutionFails() {
         Shift shift = new Shift("S-9");
-        int maxFatigue = 100;
+        int maxFatigue = Worker.getMaxFatigue();
         Worker worker = Worker.of("W-9", maxFatigue - 10);
         Worker workerB = Worker.of("W-9B",maxFatigue);
         assertDoesNotThrow(() -> shift.assign(worker));
