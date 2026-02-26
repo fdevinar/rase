@@ -35,6 +35,11 @@ public class Worker {
         return MAX_FATIGUE;
     }
     public boolean canWork() { return fatigue < MAX_FATIGUE; }
+    public void assertCanWork() {
+        if (!canWork()) {
+            throw new WorkerTooFatiguedException();
+        }
+    }
     // FUNCTIONS
     public void performWork() {
         if (fatigue >= MAX_FATIGUE) {

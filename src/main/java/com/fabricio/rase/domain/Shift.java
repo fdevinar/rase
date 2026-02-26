@@ -23,23 +23,21 @@ public class Shift {
             throw new IllegalArgumentException("Worker must not be null");
         }
         if (assignments.contains(worker)) {
-            throw new IllegalArgumentException("Worker is already in assignment");
+            throw new WorkerAlreadyAssignedToShiftException();
         }
         assignments.add(worker);
     }
 
     public void execute() {
         if (assignments.isEmpty()) {
-            throw new IllegalArgumentException("Assignment is empty");
+            throw new ShiftHasNoAssignmentsException();
         }
         if (isExecuted) {
-            throw new IllegalStateException("Shift already executed");
+            throw new ShiftAlreadyExecutedException();
         }
-        // DECIDE IF WORK CAN BE PERFORMED
+        // CHECK IF EVERY WORKER CAN WORK, TO AVOID CHANGING STATE WHEN EXECUTION FAILS
         for (Worker worker : assignments) {
-            if (!worker.canWork()) {
-                throw new IllegalStateException("Shift contains workers that can't work");
-            }
+            worker.assertCanWork();
         }
         for (Worker worker : assignments) {
             worker.performWork();

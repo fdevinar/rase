@@ -22,7 +22,7 @@ public class ShiftTest {
         Shift shift = new Shift("S-3");
         Worker worker = new Worker("W-3");
         assertDoesNotThrow(() -> shift.assign(worker));
-        assertThrows(IllegalArgumentException.class, () -> shift.assign(worker));
+        assertThrows(WorkerAlreadyAssignedToShiftException.class, () -> shift.assign(worker));
     }
     @Test
     void assign_cannotAssignWorkersWithSameId() {
@@ -30,12 +30,12 @@ public class ShiftTest {
         Worker worker = new Worker("W-4");
         Worker workerSameId = new Worker("W-4");
         assertDoesNotThrow(() -> shift.assign(worker));
-        assertThrows(IllegalArgumentException.class, () -> shift.assign(workerSameId));
+        assertThrows(WorkerAlreadyAssignedToShiftException.class, () -> shift.assign(workerSameId));
     }
     @Test
     void execute_cannotExecuteWhenAssignmentsIsEmpty() {
         Shift shift = new Shift("S-5");
-        assertThrows(IllegalArgumentException.class, shift::execute);
+        assertThrows(ShiftHasNoAssignmentsException.class, shift::execute);
     }
     @Test
     void execute_cannotExecuteSameShiftTwice() {
@@ -43,7 +43,7 @@ public class ShiftTest {
         Worker worker = new Worker("W-6");
         assertDoesNotThrow(() -> shift.assign(worker));
         assertDoesNotThrow(shift::execute);
-        assertThrows(IllegalStateException.class, shift::execute);
+        assertThrows(ShiftAlreadyExecutedException.class, shift::execute);
     }
     @Test
     void execute_executesShift() {
@@ -61,7 +61,7 @@ public class ShiftTest {
         Worker workerB = Worker.of("W-8B",100);
         assertDoesNotThrow(() -> shift.assign(worker));
         assertDoesNotThrow(() -> shift.assign(workerB));
-        assertThrows(IllegalStateException.class, shift::execute);
+        assertThrows(WorkerTooFatiguedException.class, shift::execute);
     }
     @Test
     void execute_doesntChangeWorkerStateWhenExecutionFails() {
@@ -71,7 +71,7 @@ public class ShiftTest {
         Worker workerB = Worker.of("W-9B",maxFatigue);
         assertDoesNotThrow(() -> shift.assign(worker));
         assertDoesNotThrow(() -> shift.assign(workerB));
-        assertThrows(IllegalStateException.class, shift::execute);
+        assertThrows(WorkerTooFatiguedException.class, shift::execute);
         assertTrue(worker.canWork());
     }
 
