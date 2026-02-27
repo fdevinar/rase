@@ -1,4 +1,5 @@
 package com.fabricio.rase.application;
+import com.fabricio.rase.domain.DomainException;
 import com.fabricio.rase.domain.Schedule;
 import com.fabricio.rase.domain.Shift;
 
@@ -17,19 +18,21 @@ public class Runner {
         int totalShifts = 0;
         int successfulShifts = 0;
         int failedShifts = 0;
-        List<String> messages = new ArrayList<>();
+        List<ShiftResult> results = new ArrayList<>();
         for (Shift currentShift : plannedSchedule.scheduledShifts()) {
             totalShifts += 1;
             try {
                 currentShift.execute();
                 successfulShifts += 1;
-                messages.add("Shift " + currentShift.getId() + " executed successfully.");
-            } catch (IllegalStateException e) {
+                ShiftResult result = new ShiftResult(currentShift.getId(), true, null, null);
+                results.add(result);
+            } catch (DomainException e) {
                 failedShifts += 1;
-                messages.add("Shift " + currentShift.getId() + " failed.");
+                ShiftResult result = new ShiftResult(currentShift.getId(), false, e.getClass().getSimpleName(), e.getMessage());
+                results.add(result);
             }
         }
-        return new ExecutionReport(totalShifts,successfulShifts,failedShifts,messages);
+        return new ExecutionReport(totalShifts,successfulShifts,failedShifts,results);
     }
 
 }

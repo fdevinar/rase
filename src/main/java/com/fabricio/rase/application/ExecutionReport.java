@@ -6,7 +6,7 @@ public record ExecutionReport(
         int totalShifts,
         int successfulShifts,
         int failedShifts,
-        List<String> messages
+        List<ShiftResult> results
 )
 {
     public boolean hasFailures() {

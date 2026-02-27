@@ -1,11 +1,13 @@
 package com.fabricio.rase.application;
 import com.fabricio.rase.domain.Schedule;
 import com.fabricio.rase.domain.Shift;
+import com.fabricio.rase.domain.ShiftAlreadyExecutedException;
 import com.fabricio.rase.domain.Worker;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RunnerTest {
@@ -24,9 +26,11 @@ public class RunnerTest {
         shiftB.assign(workerD);
         Schedule schedule = new Schedule("SC-1", List.of(shift, shiftB));
         Runner runner = new Runner(schedule);
+        ShiftResult successShiftA = new ShiftResult("SH-1", true, null, null);
+        ShiftResult successShiftB = new ShiftResult("SH-1B", true, null, null);
         ExecutionReport returnedReport = runner.executeSchedule();
         ExecutionReport expectedReport = new ExecutionReport
-                (2, 2,0,List.of("Shift SH-1 executed successfully.", "Shift SH-1B executed successfully."));
+                (2, 2,0, List.of(successShiftA,successShiftB));
         assertEquals(expectedReport, returnedReport);
     }
 
@@ -39,9 +43,11 @@ public class RunnerTest {
         shift.assign(workerB);
         Schedule schedule = new Schedule("SC-2", List.of(shift, shift));
         Runner runner = new Runner(schedule);
+        ShiftResult successfulShift = new ShiftResult("SH-2", true, null, null);
+        ShiftResult failedShift = new ShiftResult("SH-2", false, "ShiftAlreadyExecutedException", "Shift already executed.");
         ExecutionReport returnedReport = runner.executeSchedule();
         ExecutionReport expectedReport = new ExecutionReport
-                (2, 1,1,List.of("Shift SH-2 executed successfully.", "Shift SH-2 failed."));
+                (2, 1,1, List.of(successfulShift, failedShift));
         assertEquals(expectedReport, returnedReport);
     }
 
