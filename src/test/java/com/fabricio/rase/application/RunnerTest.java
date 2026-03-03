@@ -44,7 +44,7 @@ public class RunnerTest {
         Schedule schedule = new Schedule("SC-2", List.of(shift, shift));
         Runner runner = new Runner(schedule);
         ShiftResult successfulShift = new ShiftResult("SH-2", true, null, null);
-        ShiftResult failedShift = new ShiftResult("SH-2", false, "ShiftAlreadyExecutedException", "Shift already executed.");
+        ShiftResult failedShift = new ShiftResult("SH-2", false, FailureType.SHIFT_ALREADY_EXECUTED, "Shift already executed.");
         ExecutionReport returnedReport = runner.executeSchedule();
         ExecutionReport expectedReport = new ExecutionReport
                 (2, 1,1, List.of(successfulShift, failedShift));

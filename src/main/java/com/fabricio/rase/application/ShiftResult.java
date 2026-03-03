@@ -3,6 +3,6 @@ package com.fabricio.rase.application;
 public record ShiftResult (
         String shiftId,
         boolean successful,
-        String failureType,
+        FailureType failureType,
         String failureMessage
 ){}

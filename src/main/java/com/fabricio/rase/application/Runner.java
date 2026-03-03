@@ -1,10 +1,10 @@
 package com.fabricio.rase.application;
-import com.fabricio.rase.domain.DomainException;
-import com.fabricio.rase.domain.Schedule;
-import com.fabricio.rase.domain.Shift;
+import com.fabricio.rase.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.fabricio.rase.application.FailureType.*;
 
 public class Runner {
 
@@ -12,6 +12,14 @@ public class Runner {
 
     public Runner(Schedule plannedSchedule) {
         this.plannedSchedule = plannedSchedule;
+    }
+
+    private FailureType map (DomainException ex) {
+        if (ex instanceof WorkerTooFatiguedException) return WORKER_TOO_FATIGUED;
+        if (ex instanceof WorkerAlreadyAssignedToShiftException) return WORKER_ALREADY_ASSIGNED;
+        if (ex instanceof ShiftHasNoAssignmentsException) return SHIFT_HAS_NO_ASSIGNMENTS;
+        if (ex instanceof ShiftAlreadyExecutedException) return SHIFT_ALREADY_EXECUTED;
+        return UNKNOWN_DOMAIN_ERROR;
     }
 
     public ExecutionReport executeSchedule() {
@@ -28,7 +36,8 @@ public class Runner {
                 results.add(result);
             } catch (DomainException e) {
                 failedShifts += 1;
-                ShiftResult result = new ShiftResult(currentShift.getId(), false, e.getClass().getSimpleName(), e.getMessage());
+
+                ShiftResult result = new ShiftResult(currentShift.getId(), false, map(e), e.getMessage());
                 results.add(result);
             }
         }
