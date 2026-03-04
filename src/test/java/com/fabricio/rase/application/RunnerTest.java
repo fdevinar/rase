@@ -25,10 +25,12 @@ public class RunnerTest {
         shiftB.assign(workerC);
         shiftB.assign(workerD);
         Schedule schedule = new Schedule("SC-1", List.of(shift, shiftB));
-        Runner runner = new Runner(schedule);
+//        Runner runner = new Runner(schedule);
+        ScheduleExecutionEngine engine = new Runner();
         ShiftResult successShiftA = new ShiftResult("SH-1", true, null, null);
         ShiftResult successShiftB = new ShiftResult("SH-1B", true, null, null);
-        ExecutionReport returnedReport = runner.executeSchedule();
+//        ExecutionReport returnedReport = runner.executeSchedule();
+        ExecutionReport returnedReport = engine.run(schedule);
         ExecutionReport expectedReport = new ExecutionReport
                 (2, 2,0, List.of(successShiftA,successShiftB));
         assertEquals(expectedReport, returnedReport);
@@ -42,10 +44,12 @@ public class RunnerTest {
         shift.assign(worker);
         shift.assign(workerB);
         Schedule schedule = new Schedule("SC-2", List.of(shift, shift));
-        Runner runner = new Runner(schedule);
+//        Runner runner = new Runner(schedule);
+        ScheduleExecutionEngine engine = new Runner();
         ShiftResult successfulShift = new ShiftResult("SH-2", true, null, null);
         ShiftResult failedShift = new ShiftResult("SH-2", false, FailureType.SHIFT_ALREADY_EXECUTED, "Shift already executed.");
-        ExecutionReport returnedReport = runner.executeSchedule();
+//        ExecutionReport returnedReport = runner.executeSchedule();
+        ExecutionReport returnedReport = engine.run(schedule);
         ExecutionReport expectedReport = new ExecutionReport
                 (2, 1,1, List.of(successfulShift, failedShift));
         assertEquals(expectedReport, returnedReport);

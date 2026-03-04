@@ -6,13 +6,12 @@ import java.util.List;
 
 import static com.fabricio.rase.application.FailureType.*;
 
-public class Runner {
+public class Runner implements ScheduleExecutionEngine {
 
-    private final Schedule plannedSchedule;
-
-    public Runner(Schedule plannedSchedule) {
-        this.plannedSchedule = plannedSchedule;
-    }
+//    private final Schedule plannedSchedule;
+//    public Runner(Schedule plannedSchedule) {
+//        this.plannedSchedule = plannedSchedule;
+//    }
 
     private FailureType map (DomainException ex) {
         if (ex instanceof WorkerTooFatiguedException) return WORKER_TOO_FATIGUED;
@@ -22,7 +21,7 @@ public class Runner {
         return UNKNOWN_DOMAIN_ERROR;
     }
 
-    public ExecutionReport executeSchedule() {
+    public ExecutionReport run(Schedule plannedSchedule) {
         int totalShifts = 0;
         int successfulShifts = 0;
         int failedShifts = 0;
