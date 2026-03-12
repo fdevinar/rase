@@ -43,28 +43,3 @@ public class SystemFlowTest {
 
 }
 
-
-
-//Schedule
-//   ↓
-//ScheduleExecutionEngine (Runner)
-//   ↓
-//ExecutionReport
-//   ↓
-//PolicyEvaluator
-//   ↓
-//PolicyResults
-//
-//The test should verify something like:
-//
-//A schedule with one success + one failure
-//
-//Runner.run() produces the correct ExecutionReport
-//
-//PolicyEvaluator.evaluate() produces the correct PolicyResults
-//
-//So the test proves:
-//
-//the engine + reporting + policy interpretation work together.
-//
-//Not a huge test — just a single happy-path + partial failure scenario is enough.
