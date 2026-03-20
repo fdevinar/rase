@@ -1,4 +1,6 @@
-package com.fabricio.rase.application.dto;
+package com.fabricio.rase.application;
+import com.fabricio.rase.application.dto.ScheduleRequest;
+import com.fabricio.rase.application.dto.ShiftRequest;
 import com.fabricio.rase.domain.Schedule;
 import com.fabricio.rase.domain.Shift;
 import com.fabricio.rase.domain.Worker;

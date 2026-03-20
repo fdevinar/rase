@@ -2,6 +2,7 @@ package com.fabricio.rase.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Shift {
 
@@ -43,6 +44,21 @@ public class Shift {
             worker.performWork();
         }
         isExecuted = true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Shift)) return false;
+
+        Shift other = (Shift) o;
+
+        return id.equals(other.id)
+                && assignments.equals(other.assignments);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, assignments);
     }
 
 }
