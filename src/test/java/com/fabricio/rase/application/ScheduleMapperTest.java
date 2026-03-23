@@ -4,6 +4,7 @@ import com.fabricio.rase.application.dto.ShiftRequest;
 import com.fabricio.rase.domain.Schedule;
 import com.fabricio.rase.domain.Shift;
 import com.fabricio.rase.domain.Worker;
+import com.fabricio.rase.domain.WorkerAlreadyAssignedToShiftException;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ScheduleMapperTest {
 
     @Test
-    void mapScheduleRequest_returnsExpectedSchedule() {
+    void mapScheduleRequest_returnsExpectedScheduleWithSuccess() {
         ShiftRequest shiftRequest = new ShiftRequest("SH-1", List.of("W-1","W-2"));
         ScheduleRequest scheduleRequest = new ScheduleRequest("SC-1", Collections.singletonList(shiftRequest));
         ScheduleMapper scheduleMapper = new ScheduleMapper();
@@ -29,27 +30,12 @@ public class ScheduleMapperTest {
         assertEquals(expectedSchedule, mappedSchedule);
     }
 
-
+    @Test
+    void mapScheduleRequest_throwsWhenDuplicateWorkerAssigned() {
+        ShiftRequest shiftRequest = new ShiftRequest("SH-2", List.of("W-1","W-1"));
+        ScheduleRequest scheduleRequest = new ScheduleRequest("SC-2", Collections.singletonList(shiftRequest));
+        ScheduleMapper scheduleMapper = new ScheduleMapper();
+        assertThrows(WorkerAlreadyAssignedToShiftException.class, () -> scheduleMapper.map(scheduleRequest));
+    }
 
 }
-
-
-//✔ Happy path
-//given ScheduleRequest
-//→ map()
-//→ Schedule
-//Verify:
-//correct number of shifts
-//correct number of workers per shift
-//correct IDs
-
-//🔥 Important test (don’t skip this one)
-//✔ Identity test
-//This is the whole point of your Map.
-//same workerId in two shifts
-//→ same Worker instance
-//Conceptually:
-//Shift A → Worker("W-1")
-//Shift B → Worker("W-1")
-//assert same instance
-//This test proves your mapper is correctly building the object graph.
