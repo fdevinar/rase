@@ -9,9 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import java.util.List;
 
-import static com.fabricio.rase.application.SystemExecutionOutcomePolicy.SystemExecutionOutcome.SUCCESS;
-import static com.fabricio.rase.application.UserExecutionOutcomePolicy.UserExecutionOutcome.COMPLETED_SUCCESSFULLY;
-import static com.fabricio.rase.application.UserSuggestedActionPolicy.UserSuggestedAction.NO_ACTION_NEEDED;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ScheduleExecutionResponseMapperTest {
@@ -46,18 +43,3 @@ public class ScheduleExecutionResponseMapperTest {
 
 
 }
-
-
-
-//ScheduleRequest
-//   ↓
-//ScheduleExecutionService
-//   ↓
-//ResponseMapper
-//   ↓
-//ScheduleExecutionResponse
-//🧠 What you’re verifying
-//✔ totals are correct
-//✔ shift results mapped correctly
-//✔ enum → string conversion
-//✔ null handling (important)
