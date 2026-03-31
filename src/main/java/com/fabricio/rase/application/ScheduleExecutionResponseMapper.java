@@ -2,10 +2,12 @@ package com.fabricio.rase.application;
 
 import com.fabricio.rase.application.dto.ScheduleExecutionResponse;
 import com.fabricio.rase.application.dto.ShiftExecutionResponse;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ScheduleExecutionResponseMapper {
 
     public ScheduleExecutionResponse map (ExecuteScheduleResult result) {
