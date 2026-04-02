@@ -4,6 +4,7 @@ import com.fabricio.rase.application.ScheduleExecutionResponseMapper;
 import com.fabricio.rase.application.ScheduleExecutionService;
 import com.fabricio.rase.application.dto.ScheduleExecutionResponse;
 import com.fabricio.rase.application.dto.ScheduleRequest;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class ScheduleController {
     }
 
     @PostMapping("/execute")
-    public ScheduleExecutionResponse executeSchedule (@RequestBody ScheduleRequest request) {
+    public ScheduleExecutionResponse executeSchedule (@Valid @RequestBody ScheduleRequest request) {
         return responseMapper.map(executionService.execute(request));
     }
 
