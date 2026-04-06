@@ -5,6 +5,7 @@ public class UserSuggestedActionPolicy
     public enum UserSuggestedAction {
         NO_ACTION_NEEDED,
         REVIEW_FAILURES,
+        FIX_INPUT_DATA,
     }
 
     public UserSuggestedAction evaluate (ExecutionReport report) {
