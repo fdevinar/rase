@@ -4,6 +4,7 @@ public class Worker {
 
     private final String id;
     private int fatigue;
+    private int totalShiftsWorked;
     private static final int MAX_FATIGUE = 100;
     private static final int MIN_FATIGUE = 0;
     private static final int FATIGUE_PER_SHIFT = 10;
@@ -31,6 +32,7 @@ public class Worker {
     public String getId() {
         return id;
     }
+    public int getTotalShiftsWorked() { return totalShiftsWorked; }
     public static int getMaxFatigue() {
         return MAX_FATIGUE;
     }
@@ -46,6 +48,7 @@ public class Worker {
             throw new WorkerTooFatiguedException();
         }
         fatigue = Math.min(MAX_FATIGUE, fatigue + FATIGUE_PER_SHIFT);
+        totalShiftsWorked++;
     }
     public void rest() {
         if (fatigue <= MIN_FATIGUE) {

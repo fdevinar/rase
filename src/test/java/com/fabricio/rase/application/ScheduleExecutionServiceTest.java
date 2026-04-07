@@ -34,6 +34,5 @@ public class ScheduleExecutionServiceTest {
         ScheduleExecutionService executionService = new ScheduleExecutionService();
         assertThrows(WorkerAlreadyAssignedToShiftException.class, () -> executionService.execute(scheduleRequest));
     }
-    // NO UNIFIED RESULT YET , SERVICE THROWS AND RETURNS REPORTS
 
 }

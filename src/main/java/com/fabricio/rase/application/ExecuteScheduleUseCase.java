@@ -1,6 +1,8 @@
 package com.fabricio.rase.application;
 import com.fabricio.rase.domain.Schedule;
 
+import java.util.List;
+
 public class ExecuteScheduleUseCase {
 
     private final ScheduleExecutionEngine engine = new Runner();
@@ -8,8 +10,8 @@ public class ExecuteScheduleUseCase {
 
     public ExecuteScheduleResult execute(Schedule schedule) {
         ExecutionReport report = engine.run(schedule);
-        PolicyResults results = evaluator.evaluate(report);
-        return new ExecuteScheduleResult(report,results);
+        PolicyResults policyResults = evaluator.evaluate(report);
+        return new ExecuteScheduleResult(report,policyResults);
     }
 
 }

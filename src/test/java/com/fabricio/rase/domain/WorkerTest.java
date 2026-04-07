@@ -34,5 +34,17 @@ public class WorkerTest {
         worker.performWork();
         assertDoesNotThrow(worker::rest);
     }
+    @Test
+    void performWork_WorkerIncreasesNumberOfShiftsWorked() {
+        Worker worker = new Worker("W-4");
+        worker.performWork();
+        assertEquals(1,worker.getTotalShiftsWorked());
+    }
+    @Test
+    void performWork_WorkerDoesntIncreasesNumberOfShiftsWorkedWhenFatigued() {
+        Worker worker = Worker.of("W-5",100);
+        assertThrows(WorkerTooFatiguedException.class, worker::performWork);
+        assertEquals(0,worker.getTotalShiftsWorked());
+    }
 
 }
