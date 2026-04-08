@@ -1,6 +1,7 @@
 package com.fabricio.rase.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,6 +20,7 @@ public class Shift {
     public String getId() {
         return id;
     }
+    public List<Worker> getAssignments() { return Collections.unmodifiableList(assignments); }
     public void assign(Worker worker) {
         if (worker == null) {
             throw new IllegalArgumentException("Worker must not be null");
