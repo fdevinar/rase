@@ -22,8 +22,9 @@ public class ScheduleExecutionServiceTest {
         ScheduleExecutionService executionService = new ScheduleExecutionService();
         ExecuteScheduleResult calculatedResults = executionService.execute(scheduleRequest);
         ExecutionReport report = new ExecutionReport(1,1,0, Collections.singletonList(new ShiftResult("SH-1", true, null, null)));
-        PolicyResults results = new PolicyResults(SUCCESS, COMPLETED_SUCCESSFULLY, NO_ACTION_NEEDED);
-        ExecuteScheduleResult expectedResults = new ExecuteScheduleResult(report, results);
+        PolicyResults policyResults = new PolicyResults(SUCCESS, COMPLETED_SUCCESSFULLY, NO_ACTION_NEEDED);
+        WorkerResults workersResults = new WorkerResults("W-1",1,10,false);
+        ExecuteScheduleResult expectedResults = new ExecuteScheduleResult(report, policyResults, Collections.singletonList(workersResults));
         assertEquals(expectedResults, calculatedResults);
     }
 

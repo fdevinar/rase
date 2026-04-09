@@ -33,6 +33,7 @@ public class Worker {
         return id;
     }
     public int getTotalShiftsWorked() { return totalShiftsWorked; }
+    public int getFatigue() { return fatigue; }
     public static int getMaxFatigue() {
         return MAX_FATIGUE;
     }

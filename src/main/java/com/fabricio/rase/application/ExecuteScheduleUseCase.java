@@ -6,14 +6,16 @@ import java.util.List;
 public class ExecuteScheduleUseCase {
 
     private final ScheduleExecutionEngine engine = new Runner();
-    private final PolicyEvaluator evaluator = new PolicyEvaluator();
-
-//    TODO: build workerResults
+    private final PolicyEvaluator policyEvaluator = new PolicyEvaluator();
+    private final WorkerResultsEvaluator workerEvaluator = new WorkerResultsEvaluator();
 
     public ExecuteScheduleResult execute(Schedule schedule) {
         ExecutionReport report = engine.run(schedule);
-        PolicyResults policyResults = evaluator.evaluate(report);
-        return new ExecuteScheduleResult(report,policyResults);
+        PolicyResults policyResults = policyEvaluator.evaluate(report);
+        List<WorkerResults> workerResults = workerEvaluator.evaluate(schedule);
+
+
+        return new ExecuteScheduleResult(report,policyResults,workerResults);
     }
 
 }

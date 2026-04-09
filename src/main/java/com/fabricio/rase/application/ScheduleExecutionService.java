@@ -25,7 +25,7 @@ public class ScheduleExecutionService {
         } catch (DomainException e) {
             ExecutionReport globalFailureReport = new ExecutionReport(0,0,0, List.of());
             PolicyResults globalFailureResults = new PolicyResults(FAILURE,FAILED_COMPLETELY,FIX_INPUT_DATA);
-            return new ExecuteScheduleResult(globalFailureReport,globalFailureResults);
+            return new ExecuteScheduleResult(globalFailureReport,globalFailureResults,null);
         }
     }
 

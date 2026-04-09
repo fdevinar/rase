@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import static com.fabricio.rase.application.SystemExecutionOutcomePolicy.SystemExecutionOutcome.SUCCESS;
 import static com.fabricio.rase.application.UserExecutionOutcomePolicy.UserExecutionOutcome.COMPLETED_SUCCESSFULLY;
@@ -23,8 +24,9 @@ public class ExecuteScheduleUseCaseTest {
         ExecuteScheduleUseCase useCase = new ExecuteScheduleUseCase();
         ExecuteScheduleResult calculatedResults = useCase.execute(schedule);
         ExecutionReport report = new ExecutionReport(1,1,0, Collections.singletonList(new ShiftResult("SH-1", true, null, null)));
-        PolicyResults results = new PolicyResults(SUCCESS, COMPLETED_SUCCESSFULLY, NO_ACTION_NEEDED);
-        ExecuteScheduleResult expectedResults = new ExecuteScheduleResult(report, results);
+        PolicyResults policyResults = new PolicyResults(SUCCESS, COMPLETED_SUCCESSFULLY, NO_ACTION_NEEDED);
+        WorkerResults workersResults = new WorkerResults("W-1",1,10,false);
+        ExecuteScheduleResult expectedResults = new ExecuteScheduleResult(report, policyResults, Collections.singletonList(workersResults));
         assertEquals(expectedResults,calculatedResults);
     }
 }
