@@ -14,7 +14,6 @@ public class ExecuteScheduleUseCase {
         PolicyResults policyResults = policyEvaluator.evaluate(report);
         List<WorkerResults> workerResults = workerEvaluator.evaluate(schedule);
 
-
         return new ExecuteScheduleResult(report,policyResults,workerResults);
     }
 

@@ -8,6 +8,7 @@ public record ScheduleExecutionResponse (
         int failedShifts,
         List<ShiftExecutionResponse> shiftResults,
         String userExecutionOutcome,
-        String userSuggestedAction
+        String userSuggestedAction,
+        List<WorkerResultsResponse> workerResults
 )
 {}

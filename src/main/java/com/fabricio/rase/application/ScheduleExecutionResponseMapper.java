@@ -2,6 +2,7 @@ package com.fabricio.rase.application;
 
 import com.fabricio.rase.application.dto.ScheduleExecutionResponse;
 import com.fabricio.rase.application.dto.ShiftExecutionResponse;
+import com.fabricio.rase.application.dto.WorkerResultsResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -26,13 +27,27 @@ public class ScheduleExecutionResponseMapper {
                     );
             shiftResults.add(shiftResponse);
         }
+
+        List<WorkerResultsResponse> workerResults = new ArrayList<>();
+        for (WorkerResults worker : result.workerResults()) {
+            WorkerResultsResponse workerResponse =
+                    new WorkerResultsResponse(
+                        worker.workerId(),
+                        worker.totalShiftsWorked(),
+                        worker.finalFatigue(),
+                        worker.isFatigued()
+                    );
+            workerResults.add(workerResponse);
+        }
+
         return new ScheduleExecutionResponse(
                 executionReport.totalShifts(),
                 executionReport.successfulShifts(),
                 executionReport.failedShifts(),
                 shiftResults,
                 policyResults.userExecution().toString(),
-                policyResults.suggestedAction().toString()
+                policyResults.suggestedAction().toString(),
+                workerResults
                 );
     }
 

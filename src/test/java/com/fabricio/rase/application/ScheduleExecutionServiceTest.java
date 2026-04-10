@@ -4,6 +4,10 @@ import com.fabricio.rase.application.dto.ScheduleRequest;
 import com.fabricio.rase.application.dto.ShiftRequest;
 import com.fabricio.rase.domain.WorkerAlreadyAssignedToShiftException;
 import org.junit.jupiter.api.Test;
+
+import static com.fabricio.rase.application.SystemExecutionOutcomePolicy.SystemExecutionOutcome.FAILURE;
+import static com.fabricio.rase.application.UserExecutionOutcomePolicy.UserExecutionOutcome.FAILED_COMPLETELY;
+import static com.fabricio.rase.application.UserSuggestedActionPolicy.UserSuggestedAction.FIX_INPUT_DATA;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Collections;
@@ -23,8 +27,9 @@ public class ScheduleExecutionServiceTest {
         ExecuteScheduleResult calculatedResults = executionService.execute(scheduleRequest);
         ExecutionReport report = new ExecutionReport(1,1,0, Collections.singletonList(new ShiftResult("SH-1", true, null, null)));
         PolicyResults policyResults = new PolicyResults(SUCCESS, COMPLETED_SUCCESSFULLY, NO_ACTION_NEEDED);
-        WorkerResults workersResults = new WorkerResults("W-1",1,10,false);
-        ExecuteScheduleResult expectedResults = new ExecuteScheduleResult(report, policyResults, Collections.singletonList(workersResults));
+        WorkerResults workerResults1 = new WorkerResults("W-1",1,10,false);
+        WorkerResults workerResults2 = new WorkerResults("W-2",1,10,false);
+        ExecuteScheduleResult expectedResults = new ExecuteScheduleResult(report, policyResults, List.of(workerResults1,workerResults2));
         assertEquals(expectedResults, calculatedResults);
     }
 
@@ -33,7 +38,11 @@ public class ScheduleExecutionServiceTest {
         ShiftRequest shiftRequest = new ShiftRequest("SH-2", List.of("W-1","W-1"));
         ScheduleRequest scheduleRequest = new ScheduleRequest("SC-2", Collections.singletonList(shiftRequest));
         ScheduleExecutionService executionService = new ScheduleExecutionService();
-        assertThrows(WorkerAlreadyAssignedToShiftException.class, () -> executionService.execute(scheduleRequest));
+        ExecuteScheduleResult calculatedResults = executionService.execute(scheduleRequest);
+        ExecutionReport globalFailureReport = new ExecutionReport(0,0,0, List.of());
+        PolicyResults globalFailureResults = new PolicyResults(FAILURE,FAILED_COMPLETELY,FIX_INPUT_DATA);
+        ExecuteScheduleResult expectedResults = new ExecuteScheduleResult (globalFailureReport,globalFailureResults,List.of());
+        assertEquals(expectedResults,calculatedResults);
     }
 
 }

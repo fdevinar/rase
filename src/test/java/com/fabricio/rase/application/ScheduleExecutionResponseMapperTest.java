@@ -1,9 +1,6 @@
 package com.fabricio.rase.application;
 
-import com.fabricio.rase.application.dto.ScheduleExecutionResponse;
-import com.fabricio.rase.application.dto.ScheduleRequest;
-import com.fabricio.rase.application.dto.ShiftExecutionResponse;
-import com.fabricio.rase.application.dto.ShiftRequest;
+import com.fabricio.rase.application.dto.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -22,8 +19,10 @@ public class ScheduleExecutionResponseMapperTest {
         ScheduleExecutionResponseMapper executionResponseMapper = new ScheduleExecutionResponseMapper();
         ScheduleExecutionResponse calculatedResponse = executionResponseMapper.map(scheduleResult);
         ShiftExecutionResponse shiftResponse = new ShiftExecutionResponse("SH-1",true,null,null);
+        WorkerResultsResponse workerResponse1 = new WorkerResultsResponse("W-1",1,10,false);
+        WorkerResultsResponse workerResponse2 = new WorkerResultsResponse("W-2",1,10,false);
         ScheduleExecutionResponse expectedResponse = new ScheduleExecutionResponse
-                (1,1,0,Collections.singletonList(shiftResponse),"COMPLETED_SUCCESSFULLY","NO_ACTION_NEEDED");
+                (1,1,0,Collections.singletonList(shiftResponse),"COMPLETED_SUCCESSFULLY","NO_ACTION_NEEDED",List.of(workerResponse1,workerResponse2));
         assertEquals(expectedResponse, calculatedResponse);
     }
 
@@ -37,7 +36,7 @@ public class ScheduleExecutionResponseMapperTest {
         ScheduleExecutionResponse calculatedResponse = executionResponseMapper.map(scheduleResult);
         ShiftExecutionResponse shiftResponse = new ShiftExecutionResponse("SH-1",false,"SHIFT_HAS_NO_ASSIGNMENTS","Shift cannot execute because it has no assignments.");
         ScheduleExecutionResponse expectedResponse = new ScheduleExecutionResponse
-                (1,0,1,Collections.singletonList(shiftResponse),"FAILED_COMPLETELY","REVIEW_FAILURES");
+                (1,0,1,Collections.singletonList(shiftResponse),"FAILED_COMPLETELY","REVIEW_FAILURES",List.of());
         assertEquals(expectedResponse, calculatedResponse);
     }
 
