@@ -8,11 +8,6 @@ import static com.fabricio.rase.application.FailureType.*;
 
 public class Runner implements ScheduleExecutionEngine {
 
-//    private final Schedule plannedSchedule;
-//    public Runner(Schedule plannedSchedule) {
-//        this.plannedSchedule = plannedSchedule;
-//    }
-
     private FailureType map (DomainException ex) {
         if (ex instanceof WorkerTooFatiguedException) return WORKER_TOO_FATIGUED;
         if (ex instanceof WorkerAlreadyAssignedToShiftException) return WORKER_ALREADY_ASSIGNED;
