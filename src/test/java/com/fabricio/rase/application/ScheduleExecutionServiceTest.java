@@ -23,7 +23,8 @@ public class ScheduleExecutionServiceTest {
     void executeScheduleExecutionService_returnsExpectedScheduleResultsWithSuccess() {
         ShiftRequest shiftRequest = new ShiftRequest("SH-1", List.of("W-1","W-2"));
         ScheduleRequest scheduleRequest = new ScheduleRequest("SC-1", Collections.singletonList(shiftRequest));
-        ScheduleExecutionService executionService = new ScheduleExecutionService();
+        SimulationRunRepository fakeRepository = run -> run;
+        ScheduleExecutionService executionService = new ScheduleExecutionService(fakeRepository);
         ExecuteScheduleResult calculatedResults = executionService.execute(scheduleRequest);
         ExecutionReport report = new ExecutionReport(1,1,0, Collections.singletonList(new ShiftResult("SH-1", true, null, null)));
         PolicyResults policyResults = new PolicyResults(SUCCESS, COMPLETED_SUCCESSFULLY, NO_ACTION_NEEDED);
@@ -37,7 +38,8 @@ public class ScheduleExecutionServiceTest {
     void executeScheduleExecutionService_throwsWhenDuplicateWorkerAssigned() {
         ShiftRequest shiftRequest = new ShiftRequest("SH-2", List.of("W-1","W-1"));
         ScheduleRequest scheduleRequest = new ScheduleRequest("SC-2", Collections.singletonList(shiftRequest));
-        ScheduleExecutionService executionService = new ScheduleExecutionService();
+        SimulationRunRepository fakeRepository = run -> run;
+        ScheduleExecutionService executionService = new ScheduleExecutionService(fakeRepository);
         ExecuteScheduleResult calculatedResults = executionService.execute(scheduleRequest);
         ExecutionReport globalFailureReport = new ExecutionReport(0,0,0, List.of());
         PolicyResults globalFailureResults = new PolicyResults(FAILURE,FAILED_COMPLETELY,FIX_INPUT_DATA);

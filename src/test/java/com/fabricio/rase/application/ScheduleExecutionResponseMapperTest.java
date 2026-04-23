@@ -14,7 +14,8 @@ public class ScheduleExecutionResponseMapperTest {
     void map_returnsSuccessfulResponse() {
         ShiftRequest shiftRequest = new ShiftRequest("SH-1", List.of("W-1","W-2"));
         ScheduleRequest scheduleRequest = new ScheduleRequest("SC-1", Collections.singletonList(shiftRequest));
-        ScheduleExecutionService executionService = new ScheduleExecutionService();
+        SimulationRunRepository fakeRepository = run -> run;
+        ScheduleExecutionService executionService = new ScheduleExecutionService(fakeRepository);
         ExecuteScheduleResult scheduleResult = executionService.execute(scheduleRequest);
         ScheduleExecutionResponseMapper executionResponseMapper = new ScheduleExecutionResponseMapper();
         ScheduleExecutionResponse calculatedResponse = executionResponseMapper.map(scheduleResult);
@@ -30,7 +31,8 @@ public class ScheduleExecutionResponseMapperTest {
     void map_returnsFailedResponseWhenNoAssignments() {
         ShiftRequest shiftRequest = new ShiftRequest("SH-1", List.of());
         ScheduleRequest scheduleRequest = new ScheduleRequest("SC-1", Collections.singletonList(shiftRequest));
-        ScheduleExecutionService executionService = new ScheduleExecutionService();
+        SimulationRunRepository fakeRepository = run -> run;
+        ScheduleExecutionService executionService = new ScheduleExecutionService(fakeRepository);
         ExecuteScheduleResult scheduleResult = executionService.execute(scheduleRequest);
         ScheduleExecutionResponseMapper executionResponseMapper = new ScheduleExecutionResponseMapper();
         ScheduleExecutionResponse calculatedResponse = executionResponseMapper.map(scheduleResult);

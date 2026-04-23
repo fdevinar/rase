@@ -21,9 +21,10 @@ public class SimulationRun {
     private String resultJson;
 
     // Constructors
-    protected SimulationRun() {
-        // JPA required default constructor
-    }
+
+    // JPA required default constructor
+    protected SimulationRun() {}
+
     public SimulationRun(
                     Instant createdAt,
                     SimulationStatus status,
