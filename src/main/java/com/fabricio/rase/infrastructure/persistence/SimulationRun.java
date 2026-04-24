@@ -15,9 +15,9 @@ public class SimulationRun {
     private SimulationStatus status;
     @Column(name="created_at", nullable = false)
     private Instant createdAt;
-    @Column(name="input_json", nullable = false)
+    @Column(name="input_json", nullable = false, columnDefinition = "TEXT")
     private String inputJson;
-    @Column(name="result_json", nullable = false)
+    @Column(name="result_json", nullable = false, columnDefinition = "TEXT")
     private String resultJson;
 
     // Constructors
