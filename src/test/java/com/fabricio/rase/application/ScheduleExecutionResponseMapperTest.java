@@ -1,6 +1,7 @@
 package com.fabricio.rase.application;
 
 import com.fabricio.rase.application.dto.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -15,7 +16,8 @@ public class ScheduleExecutionResponseMapperTest {
         ShiftRequest shiftRequest = new ShiftRequest("SH-1", List.of("W-1","W-2"));
         ScheduleRequest scheduleRequest = new ScheduleRequest("SC-1", Collections.singletonList(shiftRequest));
         SimulationRunRepository fakeRepository = run -> run;
-        ScheduleExecutionService executionService = new ScheduleExecutionService(fakeRepository);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ScheduleExecutionService executionService = new ScheduleExecutionService(fakeRepository, objectMapper);
         ExecuteScheduleResult scheduleResult = executionService.execute(scheduleRequest);
         ScheduleExecutionResponseMapper executionResponseMapper = new ScheduleExecutionResponseMapper();
         ScheduleExecutionResponse calculatedResponse = executionResponseMapper.map(scheduleResult);
@@ -32,7 +34,8 @@ public class ScheduleExecutionResponseMapperTest {
         ShiftRequest shiftRequest = new ShiftRequest("SH-1", List.of());
         ScheduleRequest scheduleRequest = new ScheduleRequest("SC-1", Collections.singletonList(shiftRequest));
         SimulationRunRepository fakeRepository = run -> run;
-        ScheduleExecutionService executionService = new ScheduleExecutionService(fakeRepository);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ScheduleExecutionService executionService = new ScheduleExecutionService(fakeRepository, objectMapper);
         ExecuteScheduleResult scheduleResult = executionService.execute(scheduleRequest);
         ScheduleExecutionResponseMapper executionResponseMapper = new ScheduleExecutionResponseMapper();
         ScheduleExecutionResponse calculatedResponse = executionResponseMapper.map(scheduleResult);

@@ -5,6 +5,8 @@ import com.fabricio.rase.domain.DomainException;
 import com.fabricio.rase.domain.Schedule;
 import com.fabricio.rase.infrastructure.persistence.SimulationRun;
 import com.fabricio.rase.infrastructure.persistence.SimulationStatus;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -20,13 +22,15 @@ public class ScheduleExecutionService {
 
     private final ScheduleMapper scheduleMapper = new ScheduleMapper();
     private final ExecuteScheduleUseCase useCase = new ExecuteScheduleUseCase();
-    final SimulationRunRepository repository;
+    private final SimulationRunRepository repository;
+    private final ObjectMapper objectMapper;
 
 //    TODO: USE JACKSON - OBJECT MAPPER TO LOG REQ AND RES
 
     // DEPENDENCY INJECTION
-    public ScheduleExecutionService(SimulationRunRepository repository) {
+    public ScheduleExecutionService(SimulationRunRepository repository, ObjectMapper objectMapper) {
         this.repository = repository;
+        this.objectMapper = objectMapper;
     }
 
     public ExecuteScheduleResult execute (ScheduleRequest request) {
@@ -37,8 +41,8 @@ public class ScheduleExecutionService {
             SimulationRun simulation = new SimulationRun(
                     Instant.now(),
                     SimulationStatus.SUCCESS,
-                    request.toString(),
-                    scheduleResult.toString()
+                    objectMapper.writeValueAsString(request),
+                    objectMapper.writeValueAsString(scheduleResult)
             );
             repository.save(simulation);
             return scheduleResult;
@@ -54,6 +58,10 @@ public class ScheduleExecutionService {
             );
             repository.save(simulation);
             return new ExecuteScheduleResult(globalFailureReport,globalFailureResults,List.of());
+        }
+//        HANDLE OBJECT MAPPER FAILURE
+        catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
         }
     }
 

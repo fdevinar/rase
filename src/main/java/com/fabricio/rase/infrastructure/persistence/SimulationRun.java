@@ -12,6 +12,7 @@ public class SimulationRun {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name="simulation_status", nullable = false)
+    @Enumerated(EnumType.STRING)
     private SimulationStatus status;
     @Column(name="created_at", nullable = false)
     private Instant createdAt;
