@@ -24,7 +24,8 @@ public class ScheduleExecutionServiceTest {
     void executeScheduleExecutionService_returnsExpectedScheduleResultsWithSuccess() {
         ShiftRequest shiftRequest = new ShiftRequest("SH-1", List.of("W-1","W-2"));
         ScheduleRequest scheduleRequest = new ScheduleRequest("SC-1", Collections.singletonList(shiftRequest));
-        SimulationRunRepository fakeRepository = run -> run;
+//        SimulationRunRepository fakeRepository = run -> run;
+        FakeSimulationRunRepository fakeRepository = new FakeSimulationRunRepository();
         ObjectMapper objectMapper = new ObjectMapper();
         ScheduleExecutionService executionService = new ScheduleExecutionService(fakeRepository, objectMapper);
         ExecuteScheduleResult calculatedResults = executionService.execute(scheduleRequest);
@@ -40,7 +41,8 @@ public class ScheduleExecutionServiceTest {
     void executeScheduleExecutionService_throwsWhenDuplicateWorkerAssigned() {
         ShiftRequest shiftRequest = new ShiftRequest("SH-2", List.of("W-1","W-1"));
         ScheduleRequest scheduleRequest = new ScheduleRequest("SC-2", Collections.singletonList(shiftRequest));
-        SimulationRunRepository fakeRepository = run -> run;
+//        SimulationRunRepository fakeRepository = run -> run;
+        FakeSimulationRunRepository fakeRepository = new FakeSimulationRunRepository();
         ObjectMapper objectMapper = new ObjectMapper();
         ScheduleExecutionService executionService = new ScheduleExecutionService(fakeRepository, objectMapper);
         ExecuteScheduleResult calculatedResults = executionService.execute(scheduleRequest);

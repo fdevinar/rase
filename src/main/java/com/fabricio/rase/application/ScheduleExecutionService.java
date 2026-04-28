@@ -25,8 +25,6 @@ public class ScheduleExecutionService {
     private final SimulationRunRepository repository;
     private final ObjectMapper objectMapper;
 
-//    TODO: USE JACKSON - OBJECT MAPPER TO LOG REQ AND RES
-
     // DEPENDENCY INJECTION
     public ScheduleExecutionService(SimulationRunRepository repository, ObjectMapper objectMapper) {
         this.repository = repository;
@@ -59,7 +57,7 @@ public class ScheduleExecutionService {
             repository.save(simulation);
             return new ExecuteScheduleResult(globalFailureReport,globalFailureResults,List.of());
         }
-//        HANDLE OBJECT MAPPER FAILURE
+        // HANDLE OBJECT MAPPER FAILURE
         catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
