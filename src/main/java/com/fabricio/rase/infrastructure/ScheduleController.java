@@ -17,7 +17,7 @@ public class ScheduleController {
     final ScheduleExecutionService executionService;
     final ScheduleExecutionResponseMapper responseMapper;
 
-//    DEPENDENCY INJECTION
+    // DEPENDENCY INJECTION
     public ScheduleController(ScheduleExecutionService executionService, ScheduleExecutionResponseMapper responseMapper) {
         this.executionService = executionService;
         this.responseMapper = responseMapper;

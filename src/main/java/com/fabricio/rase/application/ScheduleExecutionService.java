@@ -15,7 +15,6 @@ import java.util.List;
 import static com.fabricio.rase.application.SystemExecutionOutcomePolicy.SystemExecutionOutcome.FAILURE;
 import static com.fabricio.rase.application.UserExecutionOutcomePolicy.UserExecutionOutcome.FAILED_COMPLETELY;
 import static com.fabricio.rase.application.UserSuggestedActionPolicy.UserSuggestedAction.FIX_INPUT_DATA;
-import static com.fabricio.rase.application.UserSuggestedActionPolicy.UserSuggestedAction.REVIEW_FAILURES;
 
 @Service
 public class ScheduleExecutionService {
