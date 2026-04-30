@@ -1,6 +1,7 @@
 package com.fabricio.rase.application;
 
 import com.fabricio.rase.infrastructure.persistence.SimulationRun;
+import com.fabricio.rase.infrastructure.persistence.SimulationRunNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class SimulationRunQueryService {
 
     public SimulationRun getRunById(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Simulation not found"));
+                .orElseThrow(SimulationRunNotFoundException::new);
     }
 
 }
