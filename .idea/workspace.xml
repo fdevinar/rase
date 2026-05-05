@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="62fc04ba-6bbb-4ef2-a41c-26e4013180cd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/RaseApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/ExecuteScheduleResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/ExecuteScheduleUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/ExecutionReport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/FailureType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/FakeSimulationRunRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/PolicyEvaluator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/PolicyResults.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/Runner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/ScheduleExecutionEngine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/ScheduleExecutionResponseMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/ScheduleExecutionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/ScheduleMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/ShiftResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/SimulationRunQueryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/SimulationRunRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/SystemExecutionOutcomePolicy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/UserExecutionOutcomePolicy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/UserSuggestedActionPolicy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/WorkerResults.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/WorkerResultsEvaluator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/dto/ScheduleExecutionResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/dto/ScheduleRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/dto/ShiftExecutionResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/dto/ShiftRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/application/dto/WorkerResultsResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/domain/DomainException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/domain/Schedule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/domain/Shift.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/domain/ShiftAlreadyExecutedException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/domain/ShiftHasNoAssignmentsException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/domain/Worker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/domain/WorkerAlreadyAssignedToShiftException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/domain/WorkerTooFatiguedException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/infrastructure/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/infrastructure/ScheduleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/infrastructure/SimulationRunController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/infrastructure/persistence/SimulationRun.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/infrastructure/persistence/SimulationRunJpaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/infrastructure/persistence/SimulationRunNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/infrastructure/persistence/SimulationRunRepositoryAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabricio/rase/infrastructure/persistence/SimulationStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabricio/rase/application/ExecuteScheduleUseCaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabricio/rase/application/PolicyEvaluatorTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabricio/rase/application/RunnerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabricio/rase/application/ScheduleExecutionResponseMapperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabricio/rase/application/ScheduleExecutionServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabricio/rase/application/ScheduleMapperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabricio/rase/application/SystemExecutionOutcomePolicyTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabricio/rase/application/SystemFlowTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabricio/rase/application/UserExecutionOutcomePolicyTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabricio/rase/application/UserSuggestedActionPolicyTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabricio/rase/domain/ScheduleTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabricio/rase/domain/ShiftTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabricio/rase/domain/WorkerTest.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="3DKE77C6bxgqAXXEmPLkUMjVbYk" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="62fc04ba-6bbb-4ef2-a41c-26e4013180cd" name="Changes" comment="" />
+      <created>1778022192154</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1778022192154</updated>
+    </task>
+    <servers />
+  </component>
+</project>
