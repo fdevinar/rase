@@ -22,7 +22,9 @@ function App() {
 
         <div className="hero">
           <img src={logo}alt="logo" />          
-        </div>                
+        </div>
+        
+        {runs.map((run) => (<p>ID: {run.id} - STATUS: {run.status}</p>))}                            
 
       </main>                  
     </>
