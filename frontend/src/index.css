@@ -2,5 +2,18 @@
 body {
   margin: 0;
   background-color: grey;
+  font-family: var(--font-ui);
 }
 
+:root {
+  --font-ui: 'Inter', sans-serif;
+  --font-brand: 'Space Grotesk', sans-serif;
+}
+
+h1,
+h2,
+h3,
+.logo,
+.brand {
+  font-family: var(--font-brand);
+}
