@@ -4,6 +4,9 @@ import './App.css'
 
 function App() {
   const [runs, setRuns] = useState([]);
+  const [customReq, setCustomReq] = useState("");
+  const jsonRequest = 
+  {"scheduleId": "schedule-1","shifts": [{"shiftId": "shift-1","workerIds": ["worker-1", "worker-2"]},{"shiftId": "shift-2","workerIds": ["worker-3"]}]}
 
   useEffect(() => {
     fetchRuns();
@@ -16,14 +19,22 @@ function App() {
     setRuns(data);
   }
 
-  const jsonRequest = 
-  {"scheduleId": "schedule-1","shifts": [{"shiftId": "shift-1","workerIds": ["worker-1", "worker-2"]},{"shiftId": "shift-2","workerIds": ["worker-3"]}]}
+  function handleSubmit(event) {
+    event.preventDefault();
+    try {
+      const parsedRequest = JSON.parse(customReq);
+      runSchedule(parsedRequest);
+    }
+    catch {
+      alert("Invalid JSON Request");
+    }    
+  }
 
-  async function runSchedule() {    
+  async function runSchedule(schedule = jsonRequest) {    
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(jsonRequest)
+      body: JSON.stringify(schedule)
       };
     const response = await fetch('http://localhost:8080/schedule/execute',requestOptions);
     const data = await response.json();
@@ -41,7 +52,18 @@ function App() {
           <h1>Resource Allocation Simulation Engine</h1>
         </div>
 
-        <button onClick={() => runSchedule()}>Perform a pre-made RUN</button>
+        <form onSubmit={handleSubmit}>
+          <label>Send custom request: </label>
+          <textarea 
+            type="text" 
+            value={customReq}
+            onChange={(e)=> setCustomReq(e.target.value)}
+          />
+          <input type="submit" />
+        </form>
+
+
+        <button onClick={() => runSchedule()}>Send default request</button>
 
         <h2>RUNS</h2>     
         <div className="runs-wrapper">
