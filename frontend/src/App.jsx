@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import logo from './assets/rase-logo.png'
 import './App.css'
+import RunList from './components/RunList';
 
 function App() {
   const [runs, setRuns] = useState([]);
   const [customReq, setCustomReq] = useState("");
+  const [selectedRun, setSelectedRun] = useState(null);
   const jsonRequest = 
   {"scheduleId": "schedule-1","shifts": [{"shiftId": "shift-1","workerIds": ["worker-1", "worker-2"]},{"shiftId": "shift-2","workerIds": ["worker-3"]}]}
 
@@ -42,6 +44,9 @@ function App() {
     fetchRuns();
   }
   
+  function onSelectedRun(id) {
+    setSelectedRun(id);
+  }
 
   return (
     <>
@@ -65,10 +70,14 @@ function App() {
 
         <button onClick={() => runSchedule()}>Send default request</button>
 
+        <p>Selected Run: {selectedRun}</p>
+
         <h2>RUNS</h2>     
-        <div className="runs-wrapper">
-          {runs.map((run) => (<p>ID: {run.id} - STATUS: {run.status}</p>))}                            
-        </div>   
+        <RunList
+          runs={runs}
+          setSelectedRun={(id) => onSelectedRun(id)}
+        >
+        </RunList>
 
       </main>                  
     </>
