@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import logo from './assets/rase-logo.png'
 import './App.css'
 import RunList from './components/RunList';
+import RunDetails from './components/RunDetails';
 
 function App() {
   const [runs, setRuns] = useState([]);
@@ -17,6 +18,7 @@ function App() {
   async function fetchRuns() {
     const response = await fetch("http://localhost:8080/runs");
     const data = await response.json();
+    console.log("Fetched Runs:");
     console.log(data);
     setRuns(data);
   }
@@ -45,7 +47,10 @@ function App() {
   }
   
   function onSelectedRun(id) {
-    setSelectedRun(id);
+    const selectedRun = runs.find(run => run.id === id);
+    console.log("Selected Run:");
+    console.log(selectedRun);
+    setSelectedRun(selectedRun);    
   }
 
   return (
@@ -56,28 +61,44 @@ function App() {
           <img src={logo}alt="logo" />          
           <h1>Resource Allocation Simulation Engine</h1>
         </div>
+        
+        <div className="main-content">
 
-        <form onSubmit={handleSubmit}>
-          <label>Send custom request: </label>
-          <textarea 
-            type="text" 
-            value={customReq}
-            onChange={(e)=> setCustomReq(e.target.value)}
-          />
-          <input type="submit" />
-        </form>
+          <div className="sidebar">
+            <h2>RUNS</h2>     
+            <RunList
+              runs={runs}
+              setSelectedRun={(id) => onSelectedRun(id)}
+            >
+            </RunList>
+          </div>
+
+          <div className="run-details">            
+            <RunDetails
+              run={selectedRun}              
+            ></RunDetails>
+          </div>
 
 
-        <button onClick={() => runSchedule()}>Send default request</button>
+        </div>
 
-        <p>Selected Run: {selectedRun}</p>
+        <div className="execution-bar">
+          <form onSubmit={handleSubmit}>
+            <label>Send custom request: </label>
+            <textarea 
+              type="text" 
+              value={customReq}
+              onChange={(e)=> setCustomReq(e.target.value)}
+            />
+            <input type="submit" />
+          </form>
 
-        <h2>RUNS</h2>     
-        <RunList
-          runs={runs}
-          setSelectedRun={(id) => onSelectedRun(id)}
-        >
-        </RunList>
+          <button onClick={() => runSchedule()}>Send default request</button>
+        </div>
+
+         
+        
+
 
       </main>                  
     </>

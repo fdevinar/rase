@@ -6,12 +6,24 @@ main {
   gap: 12px;
 }
 .hero {
-  display: flex;
-  flex-direction: column;
+  display: flex;  
   align-items: center;
+  gap: 12px;
 }
 .hero img {
   max-height: 80px;
+}
+.main-content {
+  display: flex;  
+}
+.sidebar {
+  max-width: 600px;
+}
+.run-details {
+  min-width: 300px;
+}
+.execution-bar {
+  margin-top: 32px;
 }
 .runs-wrapper {
   display: flex;
