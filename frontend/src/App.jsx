@@ -65,7 +65,7 @@ function App() {
         <div className="main-content">
 
           <div className="sidebar">
-            <h2>RUNS</h2>     
+            <h2>Simulation Runs</h2>     
             <RunList
               runs={runs}
               setSelectedRun={(id) => onSelectedRun(id)}
