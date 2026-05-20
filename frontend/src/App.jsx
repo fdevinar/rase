@@ -18,8 +18,8 @@ function App() {
   async function fetchRuns() {
     const response = await fetch("http://localhost:8080/runs");
     const data = await response.json();
-    console.log("Fetched Runs:");
-    console.log(data);
+    // console.log("Fetched Runs:");
+    // console.log(data);
     setRuns(data);
   }
 
@@ -42,14 +42,14 @@ function App() {
       };
     const response = await fetch('http://localhost:8080/schedule/execute',requestOptions);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     fetchRuns();
   }
   
   function onSelectedRun(id) {
     const selectedRun = runs.find(run => run.id === id);
-    console.log("Selected Run:");
-    console.log(selectedRun);
+    // console.log("Selected Run:");
+    // console.log(selectedRun);
     setSelectedRun(selectedRun);    
   }
 
@@ -62,7 +62,7 @@ function App() {
           <h1>Resource Allocation Simulation Engine</h1>
         </div>
         
-        <div className="main-content">
+        <div className="main-content clear-box">
 
           <div className="sidebar">
             <h2>Simulation Runs</h2>     
@@ -73,16 +73,16 @@ function App() {
             </RunList>
           </div>
 
-          <div className="run-details">            
-            <RunDetails
-              run={selectedRun}              
-            ></RunDetails>
-          </div>
+                    
+          <RunDetails
+            run={selectedRun}              
+          ></RunDetails>
+          
 
 
         </div>
 
-        <div className="execution-bar">
+        <div className="execution-bar clear-box">
           <form onSubmit={handleSubmit}>
             <label>Send custom request: </label>
             <textarea 

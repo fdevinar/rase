@@ -1,10 +1,7 @@
+import { formatDate } from "../utils/utils";
 
 export default function RunList({ runs, setSelectedRun }) {
-
-    function formatDate(date) {
-        return new Date().toISOString().split('T')[0];
-    }
-
+    
     return (
         <div className="runs-wrapper">
             <div className="header-row">

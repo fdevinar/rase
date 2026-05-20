@@ -13,19 +13,40 @@ main {
 .hero img {
   max-height: 80px;
 }
-.main-content {
+.clear-box {
   display: flex;  
   width: 100%;
   justify-content: space-evenly;
+  padding: 8px;
+  max-width: 1200px;
+  border: 1px solid white;
+  border-radius: 8px;
+}
+.main-content {
+  background-color: steelblue;
 }
 .sidebar {
   width: 300px;
 }
-.run-details {
+.details-wrapper {
   width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;    
+}
+.details-wrapper .header-row {
+  display: flex;
+  justify-content: space-around;
+  
+}
+.details-wrapper .detail-item {
+  display: flex;
+  justify-content: space-around;
+  
 }
 .execution-bar {
-  margin-top: 32px;
+  margin-top: 32px;  
+  background-color: bisque;
 }
 .runs-wrapper {
   display: flex;
