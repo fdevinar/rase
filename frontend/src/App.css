@@ -28,6 +28,8 @@ main {
 .sidebar {
   width: 300px;
 }
+
+/* RUN DETAILS */
 .details-wrapper {
   width: 500px;
   display: flex;
@@ -44,6 +46,45 @@ main {
   justify-content: space-around;
   
 }
+.execution-report {
+  display: flex;
+  gap: 18px;
+}
+.execution-report .execution-item {
+  padding: 16px;
+  border: 1px solid black;
+  border-radius: 18px;
+  background-color: white;
+  width: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  &.total {
+    color: black;
+  }
+  &.success {
+    color: green;
+  }
+  &.fail {
+    color: red;
+  }
+  &.percentage {
+    color: blue;
+  }
+}
+.execution-report .execution-item .number {
+  font-size: 20px;
+}
+.execution-report .execution-item .text {
+  font-size: 12px;
+}
+
+
+
+
+/* BOTTOM BAR */
 .execution-bar {
   margin-top: 32px;  
   background-color: bisque;
