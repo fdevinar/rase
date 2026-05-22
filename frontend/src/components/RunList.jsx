@@ -9,8 +9,7 @@ export default function RunList({ runs, setSelectedRun }) {
                 <div className="header-item">Status</div>
                 <div className="header-item">Created At</div>
             </div>
-            {runs.map(
-                (run) =>                     
+            {runs.map((run) =>                     
                     <button
                         className="run-item"                        
                         onClick={()=>setSelectedRun(run.id)}

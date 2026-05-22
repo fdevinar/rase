@@ -46,6 +46,11 @@ main {
   justify-content: space-around;
   
 }
+.basics-wrapper {
+  background-color: white;
+  border-radius: 12px;
+  padding: 8px;
+}
 .execution-report {
   display: flex;
   gap: 18px;
@@ -80,8 +85,34 @@ main {
 .execution-report .execution-item .text {
   font-size: 12px;
 }
-
-
+.policy-results {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 12px;
+  border-radius: 12px;
+}
+.policy-results .policy-item {
+  display: flex;
+}
+.worker-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 8px;
+}
+.worker-wrapper .header-row {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.worker-wrapper .worker-item {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
 
 
 /* BOTTOM BAR */
