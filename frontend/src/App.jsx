@@ -3,13 +3,15 @@ import logo from './assets/rase-logo.png'
 import './App.css'
 import RunList from './components/RunList';
 import RunDetails from './components/RunDetails';
+import { generateRandomSchedule } from './utils/utils';
 
 function App() {
   const [runs, setRuns] = useState([]);
   const [customReq, setCustomReq] = useState("");
   const [selectedRun, setSelectedRun] = useState(null);
-  const jsonRequest = 
-  {"scheduleId": "schedule-1","shifts": [{"shiftId": "shift-1","workerIds": ["worker-1", "worker-2"]},{"shiftId": "shift-2","workerIds": ["worker-3"]}]}
+  // const jsonRequest = 
+  // {"scheduleId": "schedule-1","shifts": [{"shiftId": "shift-1","workerIds": ["worker-1", "worker-2"]},{"shiftId": "shift-2","workerIds": ["worker-3"]}]}
+  const jsonRequest = generateRandomSchedule();
 
   useEffect(() => {
     fetchRuns();
@@ -72,13 +74,10 @@ function App() {
             >
             </RunList>
           </div>
-
                     
           <RunDetails
             run={selectedRun}              
-          ></RunDetails>
-          
-
+          ></RunDetails>          
 
         </div>
 
@@ -93,12 +92,8 @@ function App() {
             <input type="submit" />
           </form>
 
-          <button onClick={() => runSchedule()}>Send default request</button>
+          <button onClick={() => runSchedule()}>Send random request</button>
         </div>
-
-         
-        
-
 
       </main>                  
     </>

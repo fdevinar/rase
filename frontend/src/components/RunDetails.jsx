@@ -108,14 +108,14 @@ export default function RunDetails({ run }) {
                         <div className="header-item">Final Fatigue</div>
                         <div className="header-item">is Fatigued?</div>
                     </div>
-                    <p>{workerResults.map((worker) =>
+                    {workerResults.map((worker) =>
                             <div className="worker-item">
                                 <p>{worker.workerId}</p>
                                 <p>{worker.totalShiftsWorked}</p>
                                 <p>{worker.finalFatigue}</p>
                                 <p>{worker.isFatigued ? 'Yes' : 'No'}</p>
                             </div>
-                    )}</p>
+                    )}
                 </div>
             </>
             )}
