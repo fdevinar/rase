@@ -3,7 +3,7 @@ import logo from './assets/rase-logo.png'
 import './App.css'
 import RunList from './components/RunList';
 import RunDetails from './components/RunDetails';
-import { generateRandomSchedule } from './utils/utils';
+import { generateScenario } from './utils/utils';
 
 function App() {
   const [runs, setRuns] = useState([]);
@@ -11,7 +11,8 @@ function App() {
   const [selectedRun, setSelectedRun] = useState(null);
   // const jsonRequest = 
   // {"scheduleId": "schedule-1","shifts": [{"shiftId": "shift-1","workerIds": ["worker-1", "worker-2"]},{"shiftId": "shift-2","workerIds": ["worker-3"]}]}
-  const jsonRequest = generateRandomSchedule();
+  // const jsonRequest = generateRandomSchedule();
+  const [randomRequest, setRandomRequest]= useState();
 
   useEffect(() => {
     fetchRuns();
@@ -36,7 +37,12 @@ function App() {
     }    
   }
 
-  async function runSchedule(schedule = jsonRequest) {    
+  function generateRandomSchedule(type = "NORMAL") {    
+    setRandomRequest(generateScenario(type));    
+    runSchedule(randomRequest);
+  }
+
+  async function runSchedule(schedule = randomRequest) {    
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -81,7 +87,18 @@ function App() {
 
         </div>
 
+        <div className="random-bar clear-box">
+          <button onClick={() => generateRandomSchedule()}>Send NORMAL Request</button>
+          <button onClick={() => generateRandomSchedule("OVERWORKED")}>Send OVERWORKED Request</button>
+          <button onClick={() => generateRandomSchedule("CHAOTIC")}>Send CHAOTIC Request</button>
+          <button onClick={() => generateRandomSchedule("UNDERSTAFFED")}>Send UNDERSTAFFED Request</button>
+          <button onClick={() => generateRandomSchedule("FATIGUE_HELL")}>Send FATIGUE_HELL Request</button>
+          <button onClick={() => generateRandomSchedule("DUPLICATE_ASSIGNMENTS")}>Send DUPLICATE_ASSIGNMENTS Request</button>
+        </div>
+
         <div className="execution-bar clear-box">
+
+                      
           <form onSubmit={handleSubmit}>
             <label>Send custom request: </label>
             <textarea 
@@ -92,7 +109,6 @@ function App() {
             <input type="submit" />
           </form>
 
-          <button onClick={() => runSchedule()}>Send random request</button>
         </div>
 
       </main>                  

@@ -8,31 +8,36 @@ export default function RunDetails({ run }) {
     let policyResults;
     let workerResults;
     let successRate;
+    let parsedReport;
     if (report) {
-        const parsedReport = JSON.parse(report);        
-        executionReport = parsedReport.executionReport;
-        successRate = (executionReport.successfulShifts / executionReport.totalShifts) * 100 ;
-        policyResults = parsedReport.policyResults;
-        workerResults = parsedReport.workerResults;
-        console.log("** Execution Report **");
-        console.log(executionReport);
-        console.log("** Success Rate **");
-        console.log(successRate);
-        console.log("** Policy Results **");
-        console.log(policyResults);
-        console.log("** Worker Results **");
-        console.log(workerResults);
+        try {
+            parsedReport = JSON.parse(report);        
+            executionReport = parsedReport.executionReport;
+            successRate = (executionReport.successfulShifts / executionReport.totalShifts) * 100 ;
+            policyResults = parsedReport.policyResults;
+            workerResults = parsedReport.workerResults;
+        }
+        catch {
+            parsedReport = null;
+        }
+        // console.log("** Execution Report **");
+        // console.log(executionReport);
+        // console.log("** Success Rate **");
+        // console.log(successRate);
+        // console.log("** Policy Results **");
+        // console.log(policyResults);
+        // console.log("** Worker Results **");
+        // console.log(workerResults);
     }
         
     return (
-
+        
         <div className="details-wrapper">   
 
             <h2>Run Details</h2>
-
+                    
             {/* BASICS */}
-
-            <div className="basics-wrapper">
+            <div className="basics-wrapper box">
                 <div className="header-row">
                     <div className="header-item">ID</div>
                     <div className="header-item">Status</div>
@@ -56,19 +61,19 @@ export default function RunDetails({ run }) {
             <>
                 <h2>Shift Execution Overview</h2>
                 <div className="execution-report">
-                    <div className="execution-item total">
+                    <div className="execution-item box total">
                         <p className="number">{executionReport.totalShifts}</p>
                         <p className="text">Total Shifts</p>
                     </div>
-                    <div className="execution-item success">
+                    <div className="execution-item box success">
                         <p className="number">{executionReport.successfulShifts}</p>
                         <p className="text">Successful</p>
                     </div>
-                    <div className="execution-item fail">
+                    <div className="execution-item box fail">
                         <p className="number">{executionReport.failedShifts}</p>
                         <p className="text">Failed</p>
                     </div>
-                    <div className="execution-item percentage">
+                    <div className="execution-item box percentage">
                         <p className="number">{successRate.toFixed(0)} %</p>
                         <p className="text">Success Rate</p>
                     </div>
@@ -80,7 +85,7 @@ export default function RunDetails({ run }) {
             {policyResults && (
             <>
                 <h2>Policy Results</h2>
-                <div className="policy-results">
+                <div className="policy-results box">
                     <div className="policy-item">
                         <p>System Execution:</p>
                         <p>{policyResults.systemExecution}</p>
@@ -101,7 +106,7 @@ export default function RunDetails({ run }) {
             {workerResults && (
             <>
                 <h2>Worker Results</h2>
-                <div className="worker-wrapper">
+                <div className="worker-wrapper box">
                     <div className="header-row">
                         <div className="header-item">ID</div>
                         <div className="header-item">Total Shifts</div>
@@ -119,8 +124,12 @@ export default function RunDetails({ run }) {
                 </div>
             </>
             )}
-                                                              
+
+            
         </div>
+            
+        
+        
 
     )
 }

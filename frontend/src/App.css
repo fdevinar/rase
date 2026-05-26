@@ -29,6 +29,13 @@ main {
   width: 300px;
 }
 
+/* GENERAL */
+.box {
+  background-color: white;
+  border-radius: 12px;
+  padding: 8px;
+}
+
 /* RUN DETAILS */
 .details-wrapper {
   width: 500px;
@@ -46,20 +53,12 @@ main {
   justify-content: space-around;
   
 }
-.basics-wrapper {
-  background-color: white;
-  border-radius: 12px;
-  padding: 8px;
-}
 .execution-report {
   display: flex;
   gap: 18px;
 }
 .execution-report .execution-item {
-  padding: 16px;
   border: 1px solid black;
-  border-radius: 18px;
-  background-color: white;
   width: 75px;
   display: flex;
   flex-direction: column;
@@ -88,9 +87,6 @@ main {
 .policy-results {
   display: flex;
   flex-direction: column;
-  background-color: white;
-  padding: 12px;
-  border-radius: 12px;
 }
 .policy-results .policy-item {
   display: flex;
@@ -99,9 +95,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background-color: white;
-  border-radius: 12px;
-  padding: 8px;
 }
 .worker-wrapper .header-row {
   display: flex;
@@ -116,9 +109,11 @@ main {
 
 
 /* BOTTOM BAR */
-.execution-bar {
-  margin-top: 32px;  
+.execution-bar {  
   background-color: bisque;
+}
+.random-bar {
+  background-color: darkcyan;
 }
 .runs-wrapper {
   display: flex;
@@ -135,7 +130,19 @@ main {
   display: flex;
   justify-content: space-around;
   gap: 12px;
-  border: 1px solid ivory;
   padding: 8px;
   border-radius: 16px;
+  transition: all 333ms;
+  color: white;
+  &.green {
+    background-color: rgb(20, 69, 20);
+    border: 1px solid rgb(71, 193, 71);
+  }
+  &.red {
+    background-color: rgb(103, 23, 23);
+    border: 1px solid rgb(213, 69, 69);
+  }
+  &:hover {
+    filter: brightness(1.5);
+  }
 }
