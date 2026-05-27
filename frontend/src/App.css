@@ -50,8 +50,15 @@ main {
 }
 .details-wrapper .detail-item {
   display: flex;
-  justify-content: space-around;
-  
+  justify-content: space-around;  
+}
+.details-wrapper .detail-item p {
+  &.green {
+    color: rgb(71, 193, 71);  
+  }
+  &.red {
+    color: rgb(213, 69, 69);   
+  }  
 }
 .execution-report {
   display: flex;

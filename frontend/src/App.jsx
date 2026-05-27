@@ -88,19 +88,20 @@ function App() {
         </div>
 
         <div className="random-bar clear-box">
-          <button onClick={() => generateRandomSchedule()}>Send NORMAL Request</button>
-          <button onClick={() => generateRandomSchedule("OVERWORKED")}>Send OVERWORKED Request</button>
-          <button onClick={() => generateRandomSchedule("CHAOTIC")}>Send CHAOTIC Request</button>
-          <button onClick={() => generateRandomSchedule("UNDERSTAFFED")}>Send UNDERSTAFFED Request</button>
-          <button onClick={() => generateRandomSchedule("FATIGUE_HELL")}>Send FATIGUE_HELL Request</button>
-          <button onClick={() => generateRandomSchedule("DUPLICATE_ASSIGNMENTS")}>Send DUPLICATE_ASSIGNMENTS Request</button>
+          <h2>Request Types</h2>
+          <button onClick={() => generateRandomSchedule()}>NORMAL</button>
+          <button onClick={() => generateRandomSchedule("OVERWORKED")}>OVERWORKED</button>
+          <button onClick={() => generateRandomSchedule("CHAOTIC")}>CHAOTIC</button>
+          <button onClick={() => generateRandomSchedule("UNDERSTAFFED")}>UNDERSTAFFED</button>
+          <button onClick={() => generateRandomSchedule("FATIGUE_HELL")}>FATIGUE_HELL</button>
+          <button onClick={() => generateRandomSchedule("DUPLICATE_ASSIGNMENTS")}>DUPLICATE_ASSIGNMENTS</button>
         </div>
 
         <div className="execution-bar clear-box">
 
                       
           <form onSubmit={handleSubmit}>
-            <label>Send custom request: </label>
+            <label>Custom request: </label>
             <textarea 
               type="text" 
               value={customReq}

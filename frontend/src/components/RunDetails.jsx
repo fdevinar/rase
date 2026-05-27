@@ -48,7 +48,7 @@ export default function RunDetails({ run }) {
                 <>
                     <div className="detail-item">
                     <p>{run.id}</p>
-                    <p>{run.status}</p>
+                    <p className={`run-item ${run.status === 'SUCCESS' ? 'green' : 'red'}`}>{run.status}</p>
                     <p>{formatDate(run.createdAt)}</p>
                     </div>
 

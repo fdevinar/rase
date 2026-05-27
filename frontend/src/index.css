@@ -7,8 +7,11 @@ body {
 
 :root {
   --font-ui: 'Inter', sans-serif;
-  --font-brand: 'Space Grotesk', sans-serif;
+  --font-brand: 'Space Grotesk', sans-serif;  
 }
+
+
+
 
 h1,
 h2,
