@@ -2,23 +2,22 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: 12px;
+  align-items: start;
+  gap: 4px;
 }
 .hero {
   display: flex;  
-  align-items: center;
+  align-items: center;    
   gap: 12px;
 }
 .hero img {
-  max-height: 80px;
+  max-height: 60px;
 }
 .clear-box {
   display: flex;  
-  width: 100%;
+  width: 98%;
   justify-content: space-evenly;
   padding: 8px;
-  max-width: 1200px;
   border: 1px solid white;
   border-radius: 8px;
 }
@@ -26,7 +25,7 @@ main {
   background-color: steelblue;
 }
 .sidebar {
-  width: 300px;
+  width: 20%;
 }
 
 /* GENERAL */
@@ -38,7 +37,7 @@ main {
 
 /* RUN DETAILS */
 .details-wrapper {
-  width: 500px;
+  width: 75%;
   display: flex;
   flex-direction: column;
   gap: 12px;    
@@ -59,6 +58,10 @@ main {
   &.red {
     color: rgb(213, 69, 69);   
   }  
+}
+.shift-and-policy {
+  display: flex;
+  justify-content: space-around;
 }
 .execution-report {
   display: flex;

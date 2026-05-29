@@ -56,49 +56,53 @@ export default function RunDetails({ run }) {
                 )}     
             </div>
 
-            {/* EXECUTION REPORT */}
-            {executionReport && (
-            <>
-                <h2>Shift Execution Overview</h2>
-                <div className="execution-report">
-                    <div className="execution-item box total">
-                        <p className="number">{executionReport.totalShifts}</p>
-                        <p className="text">Total Shifts</p>
+            {executionReport && policyResults && (                
+                <>
+                <div className="shift-and-policy">
+                
+                    {/* EXECUTION REPORT */}
+                    <div className="execution">
+                        <h2>Shift Execution Overview</h2>
+                        <div className="execution-report">
+                            <div className="execution-item box total">
+                                <p className="number">{executionReport.totalShifts}</p>
+                                <p className="text">Total Shifts</p>
+                            </div>
+                            <div className="execution-item box success">
+                                <p className="number">{executionReport.successfulShifts}</p>
+                                <p className="text">Successful</p>
+                            </div>
+                            <div className="execution-item box fail">
+                                <p className="number">{executionReport.failedShifts}</p>
+                                <p className="text">Failed</p>
+                            </div>
+                            <div className="execution-item box percentage">
+                                <p className="number">{successRate.toFixed(0)} %</p>
+                                <p className="text">Success Rate</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className="execution-item box success">
-                        <p className="number">{executionReport.successfulShifts}</p>
-                        <p className="text">Successful</p>
+                    <div className="policy">
+                        {/* POLICY RESULTS */}
+                        <h2>Policy Results</h2>
+                        <div className="policy-results box">
+                            <div className="policy-item">
+                                <p>System Execution:</p>
+                                <p>{policyResults.systemExecution}</p>
+                            </div>
+                            <div className="policy-item">
+                                <p>User Execution:</p>
+                                <p>{policyResults.userExecution}</p>
+                            </div>
+                            <div className="policy-item">
+                                <p>Suggested Action:</p>
+                                <p>{policyResults.suggestedAction}</p>
+                            </div>
+                        </div>                        
                     </div>
-                    <div className="execution-item box fail">
-                        <p className="number">{executionReport.failedShifts}</p>
-                        <p className="text">Failed</p>
-                    </div>
-                    <div className="execution-item box percentage">
-                        <p className="number">{successRate.toFixed(0)} %</p>
-                        <p className="text">Success Rate</p>
-                    </div>
+                
                 </div>
-            </>
-            )}
-
-            {/* POLICY RESULTS */}
-            {policyResults && (
-            <>
-                <h2>Policy Results</h2>
-                <div className="policy-results box">
-                    <div className="policy-item">
-                        <p>System Execution:</p>
-                        <p>{policyResults.systemExecution}</p>
-                    </div>
-                    <div className="policy-item">
-                        <p>User Execution:</p>
-                        <p>{policyResults.userExecution}</p>
-                    </div>
-                    <div className="policy-item">
-                        <p>Suggested Action:</p>
-                        <p>{policyResults.suggestedAction}</p>
-                    </div>
-                </div>
+                
             </>
             )}
 
