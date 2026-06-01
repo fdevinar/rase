@@ -9,6 +9,7 @@ function App() {
   const [runs, setRuns] = useState([]);
   const [customReq, setCustomReq] = useState("");
   const [selectedRun, setSelectedRun] = useState(null);
+  const [apiStatus, setApiStatus] = useState("Not connected");
   // const jsonRequest = 
   // {"scheduleId": "schedule-1","shifts": [{"shiftId": "shift-1","workerIds": ["worker-1", "worker-2"]},{"shiftId": "shift-2","workerIds": ["worker-3"]}]}
   // const jsonRequest = generateRandomSchedule();
@@ -21,6 +22,7 @@ function App() {
   async function fetchRuns() {
     const response = await fetch("http://localhost:8080/runs");
     const data = await response.json();
+    if (data) { setApiStatus("API Connected"); }
     // console.log("Fetched Runs:");
     // console.log(data);
     setRuns(data);
@@ -67,7 +69,8 @@ function App() {
 
         <div className="hero">
           <img src={logo}alt="logo" />          
-          <h1>Resource Allocation Simulation Engine</h1>
+          <h1>Resource Allocation Simulation Engine</h1>          
+          <p className={`status ${apiStatus === 'API Connected' ? 'green' : 'red'}`}>{apiStatus}</p>
         </div>
         
         <div className="main-content clear-box">
