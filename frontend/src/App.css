@@ -34,17 +34,19 @@ main {
   padding: 8px;
   border: 1px solid white;
   border-radius: 8px;
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
 }
-.main-content {
+/* .main-content {
   background-color: steelblue;
-}
+} */
 .sidebar {
   width: 20%;
 }
 
 /* GENERAL */
 .box {
-  background-color: white;
+  background-color: lightgray;
+  /* background: linear-gradient(to bottom, #b7bec9, #a9b8be, #a1b0af, #9da7a1, #9b9e95); */
   border-radius: 12px;
   padding: 8px;
 }
@@ -133,11 +135,15 @@ main {
 
 
 /* BOTTOM BAR */
-.execution-bar {  
+/* .execution-bar {  
   background-color: bisque;
-}
-.random-bar {
+} */
+/* .random-bar {
   background-color: darkcyan;
+} */
+.random-bar button {
+  border-radius: 12px;
+  font-size: 16px;
 }
 .runs-wrapper {
   display: flex;
