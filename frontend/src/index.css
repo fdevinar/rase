@@ -1,7 +1,13 @@
 
 body {
   margin: 0;
-  background-color: rgb(202, 202, 202);
+  /* background-color: rgb(202, 202, 202); */
+  /* background: #1e293b;
+  color: #e2e8f0; */
+  
+  background: #0f172a;
+  color: #e2e8f0;
+
   font-family: var(--font-ui);
 }
 
@@ -29,6 +35,42 @@ h1 {
 h2 {
   font-size: 18px;
   padding: 12px 0;
+}
+
+p {
+  margin: 0;
+}
+
+
+
+/* REVAMP */
+
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
 }
 
 p {
